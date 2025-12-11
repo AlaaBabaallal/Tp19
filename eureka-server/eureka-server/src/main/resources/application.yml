@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: eureka-server
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    # Un serveur Eureka ne doit PAS se registrer lui-même
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # Temps d’attente au démarrage avant d’accepter les requêtes
+    waitTimeInMsWhenSyncEmpty: 5
